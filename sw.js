@@ -7,7 +7,6 @@ self.addEventListener('install', (event) => {
     'css/styles.css', 'css/responsive.css', 'css/restaurantDetails.css',
     'img/*',
     'data/restaurant.json',
-    '//normalize-css.googlecode.com/svn/trunk/normalize.css',
     'https://unpkg.com/leaflet@1.3.1/dist/leaflet.css',
     'https://unpkg.com/leaflet@1.3.1/dist/leaflet.js'
     ]);
@@ -20,7 +19,7 @@ self.addEventListener('activate', function(event) {
     caches.keys().then(function(cacheNames) {
       return Promise.all (
         cacheNames.filter(function(cacheName) {
-          return cacheName.startsWith('wittr-') &&
+          return cacheName.startsWith('mws-static-') &&
             cacheName != staticCacheName;
         }).map(function(cacheName) {
           return cache.delete(cacheName);
@@ -31,28 +30,12 @@ self.addEventListener('activate', function(event) {
 });
 
 
-
-self.addEventListener('fetch', function(event) {
-  console.log('hello');
-  event.respondWith(
-    caches.match(event.request)
-    .then(function(response)) {
-      if (response) {
-        console.log('found previous cache!');
-        return response;
-      }
-      return fetch(event.request)
-        .then(function(response) {
-          caches.open(staticCacheName)
-          .then((cache) {
-            cache.put(event.request, response.clone());
-          }).catch(function() {
-            console.log('oops');
-            //return new Response("You appear to be offline, and we didn't any old cache to load.");
-          });
-        //return response;
-      });
-    });
+self.addEventListener('fetch', (event) => {
+  event.respondWith(caches.match(event.request).then((response) => {
+    return response || fetch(event.request);
+  })
+  .catch(err => console.log(err, event.request))
+  )
 });
 
 

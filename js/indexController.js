@@ -1,3 +1,6 @@
+self.addEventListener('fetch', function(event) {
+  console.log('hello what is going on');
+});
 console.log('is this working');
 function IndexController() {
   console.log('executed!');
@@ -6,6 +9,7 @@ function IndexController() {
 IndexController.prototype._registerServiceWorker = function () {
   //check if browser supports the service worker
   console.log('hello!!!');
+  console.log('plop');
   if (!navigator.serviceWorker) return;
 
   var indexController = this;
@@ -44,7 +48,7 @@ IndexController.prototype._registerServiceWorker = function () {
   });
 }
 
-IndexController.prototype._trackInstalling = function () {
+IndexController.prototype._trackInstalling = function (worker) {
   var indexController = this;
   worker.addEventListener('statechange', function() {
     if (worker.state == 'installed') {
@@ -64,3 +68,4 @@ IndexController.prototype._updateReady = function () {
   });
 
 };
+let controller = new IndexController();

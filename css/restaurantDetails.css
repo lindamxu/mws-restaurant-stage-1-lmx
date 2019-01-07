@@ -1,0 +1,196 @@
+/*responsive styles for when a restaurant is selected*/
+
+/*for iPhones 5, 6/7/8, 6/7/8 Plus, X; Nexus 5; Galaxy S5; Pixel 2, 2XL; screens smaller than 767px */
+@media screen and (min-width: 320px) {
+  body {
+    width: 100%;
+    position: absolute;
+  }
+  .inside header {
+    width: 100%;
+    position: absolute;
+  }
+  .inside header nav {
+    padding-top: 10px;
+  }
+  .inside header nav h1  {
+    padding: 10px;
+  }
+  .inside header #breadcrumb {
+    width: auto;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    line-height: 1.0;
+  }
+  .inside #map-container {
+    width: 100%;
+    padding-top: 55px;
+    position: relative;
+  }
+  .inside #map {
+    height: 400px;
+  }
+  .inside #map-container .leaflet-bottom {
+    display: none;
+  }
+  .inside #restaurant-container {
+    width: auto;
+    padding-top: 100px;
+    justify-content: center;
+  }
+  .inside #restaurant-container img {
+    width: 100%;
+  }
+  .inside #restaurant-container p {
+    width: 100%;
+    text-align: center;
+  }
+  .inside #restaurant-container table {
+    width: 100%;
+  }
+  .inside #restaurant-hours td {
+    text-align: center;
+    font-size: 10pt;
+  }
+
+  .inside #reviews-container {
+    width: auto;
+  }
+  .inside #reviews-container ul {
+    width: auto;
+  }
+  .inside #reviews-container li {
+    width: auto;
+    border-radius: 20px;
+  }
+  .inside .review-div {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: auto;
+    padding-top: 10px;
+
+  }
+  .inside .review-div p {
+    color: black;
+    font-size: 12pt;
+    font-weight: bold;
+  }
+  .inside .review-div .reviewer-date {
+    font-weight: normal;
+    font-size: 10pt;
+  }
+  .inside #reviews-container .reviewer-rating {
+    color: white;
+    background-color: orange;
+    display: inline;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  .inside #reviews-container .reviewer-comments {
+    padding-top: 10px;
+  }
+  .inside #footer {
+    width: -webkit-fill-available;
+    position: absolute;
+  }
+}
+
+@media screen and (min-width: 500px) and (max-width: 700px) {
+  .inside header nav h1  {
+    padding: 15px !important;
+  }
+  .inside #restaurant-hours td {
+    font-size: 16pt !important;
+  }
+  .inside .review-div p {
+    font-size: 18pt !important;
+  }
+  .inside .review-div .reviewer-date {
+    font-size: 16pt !important;
+  }
+  .inside #restaurant-container p {
+    font-size: 14pt !important;
+  }
+  .inside #reviews-container .reviewer-rating {
+    font-size: 14pt !important;
+  }
+  .inside #reviews-container .reviewer-comments {
+    font-size: 12pt !important;
+  }
+}
+/*for screens between 701px and 900px, iPad, iPad Pro */
+@media screen and (min-width: 701px) and (max-width: 900px){
+  .inside header nav h1  {
+    padding: 15px !important;
+  }
+  .inside #restaurant-hours td {
+    font-size: 20pt !important;
+  }
+  .inside .review-div p {
+    font-size: 22pt !important;
+  }
+  .inside .review-div .reviewer-date {
+    font-size: 20pt !important;
+  }
+  .inside #restaurant-container p {
+    font-size: 18pt !important;
+  }
+  .inside #reviews-container .reviewer-rating {
+    font-size: 18pt !important;
+  }
+  .inside #reviews-container .reviewer-comments {
+    font-size: 16pt !important;
+  }
+}
+/*for laptops (1024px) and large laptops (1440px) */
+@media screen and (min-width: 901px) {
+  .inside header nav h1  {
+    padding: 10px !important;
+  }
+  .inside header nav h1 a {
+    font-size: 24pt !important;
+  }
+  .inside #restaurant-container {
+    width: 50% !important;
+  }
+  .inside #reviews-container {
+    width: 50% !important;
+  }
+  .inside .restaurant-reviews {
+    display: flex !important;
+    padding-bottom: 50px !important;
+  }
+  .inside #restaurant-container h1 {
+    font-size: 30pt !important;
+    text-align: center !important;
+  }
+  .inside #restaurant-hours td {
+    font-size: 20pt !important;
+  }
+  .inside .review-div p {
+    font-size: 22pt !important;
+  }
+  .inside .review-div .reviewer-date {
+    font-size: 14pt !important;
+    padding: 10px !important;
+  }
+  .inside #restaurant-container p {
+    font-size: 24pt !important;
+  }
+  .inside #reviews-container h2 {
+    margin: 80px 0 0px !important;
+    text-align: center !important;
+  }
+  .inside #reviews-container .reviewer-rating {
+    font-size: 18pt !important;
+  }
+  .inside #reviews-container .reviewer-comments {
+    font-size: 16pt !important;
+  }
+  .inside #footer {
+    margin-top: 0px !important;
+    position: absolute !important;
+  }
+}

@@ -8,7 +8,7 @@ var markers = []
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
 document.addEventListener('DOMContentLoaded', (event) => {
-  initMap(); // added 
+  initMap(); // added
   fetchNeighborhoods();
   fetchCuisines();
 });
@@ -59,7 +59,7 @@ fetchCuisines = () => {
  */
 fillCuisinesHTML = (cuisines = self.cuisines) => {
   const select = document.getElementById('cuisines-select');
-
+  select.name = 'cuisines drop down menu';
   cuisines.forEach(cuisine => {
     const option = document.createElement('option');
     option.innerHTML = cuisine;
@@ -78,7 +78,7 @@ initMap = () => {
         scrollWheelZoom: false
       });
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.jpg70?access_token={mapboxToken}', {
-    mapboxToken: '<your MAPBOX API KEY HERE>',
+    mapboxToken: 'pk.eyJ1IjoibGluZGFteCIsImEiOiJjanE4amt0N3MzMXpkNDhyMTB4N2E2dzhkIn0.NXBBdFhUs1nrN3C6ZGQM_Q',
     maxZoom: 18,
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
       '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
@@ -157,28 +157,43 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
  */
 createRestaurantHTML = (restaurant) => {
   const li = document.createElement('li');
-
+  li.setAttribute('tabindex', '1');
   const image = document.createElement('img');
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.alt = 'photograph of the '+ restaurant.name + ' restaurant';
+  image.setAttribute('tabindex','2');
   li.append(image);
 
   const name = document.createElement('h1');
   name.innerHTML = restaurant.name;
+  name.setAttribute('tabindex', '3');
+  name.setAttribute('aria-label', restaurant.name);
   li.append(name);
 
   const neighborhood = document.createElement('p');
   neighborhood.innerHTML = restaurant.neighborhood;
+  neighborhood.setAttribute('tabindex','4');
+  neighborhood.setAttribute('aria-label', restaurant.neighborhood);
+
   li.append(neighborhood);
 
   const address = document.createElement('p');
   address.innerHTML = restaurant.address;
+  address.setAttribute('tabindex','5');
+  address.setAttribute('aria-label', restaurant.address);
   li.append(address);
 
-  const more = document.createElement('a');
+  //change from a to a button for native HTML semantics
+  const more = document.createElement('button');
+  more.className = 'view-details';
   more.innerHTML = 'View Details';
-  more.href = DBHelper.urlForRestaurant(restaurant);
-  li.append(more)
+  more.setAttribute('tabindex','6');
+  more.setAttribute('aria-label', 'Link to ' + restaurant.name + ' details');
+  more.addEventListener("click", function() {
+    window.location.href = DBHelper.urlForRestaurant(restaurant);
+  });
+  li.append(more);
 
   return li
 }
@@ -197,7 +212,8 @@ addMarkersToMap = (restaurants = self.restaurants) => {
     self.markers.push(marker);
   });
 
-} 
+}
+
 /* addMarkersToMap = (restaurants = self.restaurants) => {
   restaurants.forEach(restaurant => {
     // Add marker to the map
@@ -208,4 +224,3 @@ addMarkersToMap = (restaurants = self.restaurants) => {
     self.markers.push(marker);
   });
 } */
-

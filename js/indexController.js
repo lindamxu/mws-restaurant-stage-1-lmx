@@ -7,7 +7,7 @@ function IndexController() {
    * Registers service worker, installs the service worker, check if there's a waiting service worker, etc
    */
 IndexController.prototype._registerServiceWorker = function () {
-  //check if browser supports the service worker
+  //check if the browser supports this service worker
   if (!navigator.serviceWorker) return;
 
   var indexController = this;
@@ -20,7 +20,7 @@ IndexController.prototype._registerServiceWorker = function () {
     if (!navigator.serviceWorker.controller) {
       return;
     }
-    //checks if there's a waiting service worker. if so, inform the user
+    //checks if there's a waiting service worker
     if (reg.waiting) {
       indexController._updateReady(reg.waiting);
       return;
@@ -32,11 +32,11 @@ IndexController.prototype._registerServiceWorker = function () {
       return;
     }
 
-    //listens for a service worker that appears in reg.installing
+    //listens for a service worker that has been installed
     reg.addEventListener('updatefound', function() {
       indexController._trackInstalling(reg.installing);
     });
-    //catch errors when registering service worker
+    //log out errors during service worker registration
   }).catch((err) => {
     console.log('ServiceWorker registration failed with: ', err);
   });

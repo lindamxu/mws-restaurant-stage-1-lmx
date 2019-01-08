@@ -1,15 +1,10 @@
-self.addEventListener('fetch', function(event) {
-  console.log('hello what is going on');
-});
-console.log('is this working');
+//sdafsadfs
 function IndexController() {
   console.log('executed!');
   this._registerServiceWorker();
 }
 IndexController.prototype._registerServiceWorker = function () {
   //check if browser supports the service worker
-  console.log('hello!!!');
-  console.log('plop');
   if (!navigator.serviceWorker) return;
 
   var indexController = this;
@@ -24,6 +19,7 @@ IndexController.prototype._registerServiceWorker = function () {
     }
     //checks if there's a waiting service worker. if so, inform the user
     if (reg.waiting) {
+      console.log('hello there is a new service worker waiting');
       indexController._updateReady(reg.waiting);
       return;
     }
@@ -43,6 +39,7 @@ IndexController.prototype._registerServiceWorker = function () {
     console.log('ServiceWorker registration failed with: ', err);
   });
 
+  //listen for the controlling service worker changing and reload the page
   navigator.serviceWorker.addEventListener('controllerchange', () => {
     window.location.reload();
   });
@@ -52,12 +49,13 @@ IndexController.prototype._trackInstalling = function (worker) {
   var indexController = this;
   worker.addEventListener('statechange', function() {
     if (worker.state == 'installed') {
+      console.log('installed!');
       indexController._updateReady(worker);
     }
   });
 };
 
-IndexController.prototype._updateReady = function () {
+IndexController.prototype._updateReady = function (worker) {
   var toast = this._toastsView.show("New version available", {
     buttons: ['refresh', 'dismiss']
   });

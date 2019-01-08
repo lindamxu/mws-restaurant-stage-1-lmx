@@ -1,6 +1,8 @@
-/*responsive styles for when a restaurant is selected*/
+/*Responsive styles for when a restaurant is selected*/
 
-/*for iPhones 5, 6/7/8, 6/7/8 Plus, X; Nexus 5; Galaxy S5; Pixel 2, 2XL; screens smaller than 767px */
+/**
+ * for iPhones 5, 6/7/8, 6/7/8 Plus, X; Nexus 5; Galaxy S5; Pixel 2, 2XL; screens smaller than 767px
+ */
 @media screen and (min-width: 320px) {
   body {
     width: 100%;
@@ -97,6 +99,9 @@
   }
 }
 
+/**
+ * for screens between 500px and 700px
+ */
 @media screen and (min-width: 500px) and (max-width: 700px) {
   .inside header nav h1  {
     padding: 15px !important;
@@ -120,7 +125,9 @@
     font-size: 12pt !important;
   }
 }
-/*for screens between 701px and 900px, iPad, iPad Pro */
+/**
+ * for screens between 701px and 900px, iPad, iPad Pro
+ */
 @media screen and (min-width: 701px) and (max-width: 900px){
   .inside header nav h1  {
     padding: 15px !important;
@@ -144,7 +151,9 @@
     font-size: 16pt !important;
   }
 }
-/*for laptops (1024px) and large laptops (1440px) */
+/**
+ * for laptops (1024px) and large laptops (1440px)
+ */
 @media screen and (min-width: 901px) {
   .inside header nav h1  {
     padding: 10px !important;

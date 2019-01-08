@@ -1,8 +1,11 @@
-//sdafsadfs
+let userConsent = false;
+
 function IndexController() {
-  console.log('executed!');
   this._registerServiceWorker();
 }
+  /**
+   * Registers service worker, installs the service worker, check if there's a waiting service worker, etc
+   */
 IndexController.prototype._registerServiceWorker = function () {
   //check if browser supports the service worker
   if (!navigator.serviceWorker) return;
@@ -19,7 +22,6 @@ IndexController.prototype._registerServiceWorker = function () {
     }
     //checks if there's a waiting service worker. if so, inform the user
     if (reg.waiting) {
-      console.log('hello there is a new service worker waiting');
       indexController._updateReady(reg.waiting);
       return;
     }
@@ -44,26 +46,27 @@ IndexController.prototype._registerServiceWorker = function () {
     window.location.reload();
   });
 }
+/**
+ * Tracks installation status of a service worker
+ */
 
 IndexController.prototype._trackInstalling = function (worker) {
   var indexController = this;
   worker.addEventListener('statechange', function() {
     if (worker.state == 'installed') {
-      console.log('installed!');
       indexController._updateReady(worker);
     }
   });
 };
 
-IndexController.prototype._updateReady = function (worker) {
-  var toast = this._toastsView.show("New version available", {
-    buttons: ['refresh', 'dismiss']
-  });
+/**
+ * Asks the user if he/she wish to update to the new service worker
+ */
+IndexController.prototype._updateReady = function(worker) {
+  userConsent = confirm ("New version available. Do you wish to update?");
 
-  toast.answer.then(function(answer) {
-    if (answer != 'refresh') return;
-    worker.postMessage({action: 'skipWaiting'});
-  });
+  if (!userConsent) return;
+  worker.postMessage({ action: 'skipWaiting' });
 
 };
 let controller = new IndexController();

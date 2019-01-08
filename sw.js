@@ -1,6 +1,7 @@
-var staticCacheName = 'mws-static-v2';
-//jl;ksafjs
-//sadfasfas
+var staticCacheName = 'mws-static-v1';
+/**
+  * Installs service worker and caches content so it is available offline
+  */
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(staticCacheName).then((cache) => {
     return cache.addAll(['/',
@@ -14,7 +15,9 @@ self.addEventListener('install', (event) => {
   }));
 });
 
-
+/**
+ * Activates service worker and deletes old caches
+ */
 self.addEventListener('activate', function(event) {
   event.waitUntil(
     caches.keys().then(function(cacheNames) {
@@ -31,6 +34,9 @@ self.addEventListener('activate', function(event) {
 });
 
 
+/**
+ * Fetches from the cache or makes a network request if there is no matching cache
+ */
 self.addEventListener('fetch', (event) => {
   event.respondWith(caches.match(event.request).then((response) => {
     return response || fetch(event.request);
@@ -39,7 +45,9 @@ self.addEventListener('fetch', (event) => {
   )
 });
 
-
+/**
+ * Listens for input from the page to update the service worker
+ */
 self.addEventListener('message', function (event) {
   if (event.data.action == 'skipWaiting') {
     self.skipWaiting();

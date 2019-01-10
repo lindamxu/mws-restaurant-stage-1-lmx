@@ -194,7 +194,7 @@ nav h1 a {
   height: 87%;
   position: fixed;
   right: 0;
-  top: 80px;
+  top: 60px;
   width: 50%;
 }
 .inside #map {
@@ -245,7 +245,7 @@ nav h1 a {
 #reviews-container {
   padding: 30px 40px 80px;
 }
-#reviews-container h2 {
+#reviews-container h3 {
   color: #f58500;
   font-size: 24pt;
   font-weight: 300;
